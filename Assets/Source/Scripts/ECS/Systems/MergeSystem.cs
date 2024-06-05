@@ -4,7 +4,6 @@ using Source.Scripts.ECS.Views;
 using Source.Scripts.ECS.Views.Substances;
 using Source.Scripts.SignalSystem;
 using Source.SignalSystem;
-using UnityEngine;
 using UnityEngine.Scripting;
 
 namespace Source.Scripts.ECS.Systems
@@ -14,16 +13,20 @@ namespace Source.Scripts.ECS.Systems
     {
         protected override void OnSignal(CommandMergeSignal data)
         {
-            TryMergeAll(data.ContainerEntity);
-            RegistrySignal(new OnMergeSignal { ContainerEntity = data.ContainerEntity});
+            if (TryMergeAll(data.ContainerEntity)) RegistrySignal(new OnMergeSignal
+            {
+                ContainerEntity = data.ContainerEntity
+            });
         }
         
         /// <summary>
         /// Добавлять мержи тут.
         /// </summary>
-        private void TryMergeAll(int mergeEntity)
+        private bool TryMergeAll(int mergeEntity)
         {
-            if (TryMerge<AquaSubstanceData, CalendulaSubstanceData, HypericumSubstanceData>(mergeEntity)) return;
+            if (TryMerge<AquaSubstanceData, CalendulaSubstanceData, HypericumSubstanceData>(mergeEntity)) return true;
+
+            return false;
         }
         
         /// <summary>

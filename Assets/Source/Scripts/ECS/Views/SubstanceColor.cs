@@ -61,7 +61,7 @@ namespace Source.Scripts.ECS.Views
         private void OnSignal(OnMergeSignal data)
         {
             if (data.ContainerEntity != Entity) return;
-
+            
             SetCurrentColorByEntity();
         }
 
