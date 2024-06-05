@@ -1,11 +1,17 @@
 ﻿using Source.EasyECS.Interfaces;
 using Source.Scripts.ECS.Systems;
+using Source.SignalSystem;
 
 namespace Source.Scripts.ECS.Views.Substances
 {
     public struct SubstanceMark : IEcsMark
     {
         
+    }
+
+    public struct OnSubstanceDestroyedSignal : ISignal
+    {
+        public Substance Substance;
     }
     
     public struct HypericumSubstanceData : IEcsData<int>, ISubstance

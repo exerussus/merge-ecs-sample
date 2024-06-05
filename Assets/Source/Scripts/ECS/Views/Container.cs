@@ -9,13 +9,13 @@ using UnityEngine;
 
 namespace Source.Scripts.ECS.Views
 {
-    public class Container : EcsComponent, EcsComponent.IInitialize
+    public class Container : EcsComponent
     {
         [SerializeField, ReadOnly] private int _entity;
         private Componenter _componenter;
         public int Entity => _entity;
         
-        public void Initialize(int entity, Componenter componenter)
+        public override void Initialize(int entity, Componenter componenter)
         {
             _entity = entity;
             _componenter = componenter;

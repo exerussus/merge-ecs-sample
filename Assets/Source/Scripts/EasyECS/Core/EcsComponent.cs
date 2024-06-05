@@ -1,19 +1,20 @@
-﻿using Source.Scripts.SignalSystem;
+﻿using Source.EasyECS;
+using Source.Scripts.SignalSystem;
 using UnityEngine;
 
 namespace Source.Scripts.EasyECS.Core
 {
     [RequireComponent(typeof(EcsMonoBehavior))]
-    public class EcsComponent : MonoSignalListener
+    public class EcsComponent : MonoSignalListener, IEcsComponentInitialize, IEcsComponentDestroy
     {
-        public interface IInitialize : IEcsComponentInitialize
+        public virtual void Initialize(int entity, Componenter componenter)
         {
-
+            
         }
-    
-        public interface IDestroy : IEcsComponentDestroy
-        {
 
+        public virtual void Destroy(int entity, Componenter componenter)
+        {
+            
         }
     }
 }

@@ -5,9 +5,9 @@ using Source.Scripts.EasyECS.Core;
 
 namespace Source.Scripts.ECS.Views.Substances
 {
-    public partial class Substance : EcsComponent, EcsComponent.IInitialize
+    public partial class Substance : EcsComponent
     {
-        public void Initialize(int entity, Componenter componenter)
+        public override void Initialize(int entity, Componenter componenter)
         {
             componenter.AddOrGet<SubstanceMark>(entity);
             

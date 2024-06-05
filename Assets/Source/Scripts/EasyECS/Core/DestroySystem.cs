@@ -29,7 +29,14 @@ namespace Source.Scripts.EasyECS.Core
                 
                 if (onDestroyData.TimeRemaining <= 0)
                 {
-                    if (onDestroyData.ObjectToDelete != null) onDestroyData.ObjectToDelete.gameObject.SetActive(false);
+                    if (onDestroyData.ObjectToDelete != null)
+                    {
+                        onDestroyData.ObjectToDelete.gameObject.SetActive(false);
+                        if (Componenter.TryGetReadOnly(entity, out EcsMonoBehaviorData ecsMonoBehaviorData))
+                        {
+                            RegistrySignal(new OnEcsMonoBehaviorDestroyedSignal {EcsMonoBehavior = ecsMonoBehaviorData.Value});
+                        }
+                    }
                     Componenter.DelEntity(entity);
                 }
             }

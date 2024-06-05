@@ -1,4 +1,5 @@
-﻿using Source.EasyECS;
+﻿
+using Source.EasyECS;
 using Source.EasyECS.Interfaces;
 using Source.Scripts.EasyECS.Core;
 using Source.Scripts.ECS.Systems;
@@ -6,7 +7,7 @@ using UnityEngine;
 
 namespace Source.Scripts.ECS.Views.Substances
 {
-    public partial class Substance : EcsComponent, EcsComponent.IInitialize
+    public partial class Substance : EcsComponent
     {
         [SerializeField] private int amount;
         
@@ -15,6 +16,11 @@ namespace Source.Scripts.ECS.Views.Substances
         {
             ref var data = ref componenter.AddOrGet<T>(entity);
             data.SubstanceAmount += amount;
+        }
+
+        private void OnDisable()
+        {
+            Signal.RegistryRaise(new OnSubstanceDestroyedSignal {Substance = this});
         }
 
         protected override void OnValidate()
