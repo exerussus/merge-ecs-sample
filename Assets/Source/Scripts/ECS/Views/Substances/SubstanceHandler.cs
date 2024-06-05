@@ -1,5 +1,4 @@
 ﻿
-using System;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using Source.Scripts.SignalSystem;
@@ -16,7 +15,9 @@ namespace Source.Scripts.ECS.Views.Substances
         [SerializeField, ReadOnly] private List<Substance> substances;
         private float _timeDelay = 1f;
         private float _timer;
-        
+
+        public Substance.Type SubstanceType => substanceType;
+
         private void Start()
         {
             for (int i = 0; i < count; i++)
@@ -36,7 +37,8 @@ namespace Source.Scripts.ECS.Views.Substances
                 {
                     if (!substance.gameObject.activeSelf)
                     {
-                        substance.transform.position = transform.position;
+                        substance.Rigidbody2D.velocity = Vector2.zero;
+                        substance.transform.position = transform.position + spawnOffset;
                         substance.gameObject.SetActive(true);
                     }
                 }

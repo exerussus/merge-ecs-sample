@@ -53,6 +53,7 @@ namespace Source.Scripts.ECS.Systems
 
     public interface ISubstance
     {
+        public Substance.Type SubstanceType { get; }
         public int SubstanceAmount { get; set; }
     }
 }

@@ -9,7 +9,8 @@ namespace Source.Scripts.ECS.Views.Substances
     {
         public override void Initialize(int entity, Componenter componenter)
         {
-            componenter.AddOrGet<SubstanceMark>(entity);
+            ref var type = ref componenter.AddOrGet<SubstanceData>(entity);
+            type.Type = substanceType;
             
             switch (substanceType)
             {

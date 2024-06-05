@@ -19,7 +19,7 @@ namespace Source.Scripts.EasyECS.Core
         [SerializeField, ReadOnly] private bool isAlive = true;
         [SerializeField, ReadOnly] private bool isInitialized;
         [SerializeField, ReadOnly] private int components;
-        [SerializeField, HideInInspector] private List<EcsComponent> ecsComponents;
+        [SerializeField, HideInInspector] private EcsComponent[] ecsComponents;
         [SerializeField, HideInInspector] private Signal signal;
         private bool _isReused;
         
@@ -81,14 +81,8 @@ namespace Source.Scripts.EasyECS.Core
         {
             if (signal == null) signal = Project.Loader.GetAssetByTypeOnValidate<Signal>();
 
-            var monoBehaviours = GetComponents<EcsComponent>();
-
-            components = 0;
-            foreach (var monoBeh in monoBehaviours)
-            {
-                ecsComponents.Add(monoBeh);
-                components++;
-            }
+            ecsComponents = GetComponents<EcsComponent>();
+            components = ecsComponents.Length;
         }
 #endif
         

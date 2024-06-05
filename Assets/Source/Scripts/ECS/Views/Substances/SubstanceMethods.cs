@@ -10,7 +10,10 @@ namespace Source.Scripts.ECS.Views.Substances
     public partial class Substance : EcsComponent
     {
         [SerializeField] private int amount;
-        
+        [SerializeField, HideInInspector] private Rigidbody2D substanceRigidbody;
+
+        public Rigidbody2D Rigidbody2D => substanceRigidbody;
+
         private void InitData<T>(int entity, Componenter componenter) 
             where T : struct, IEcsData<int>, ISubstance
         {
@@ -26,6 +29,7 @@ namespace Source.Scripts.ECS.Views.Substances
         protected override void OnValidate()
         {
             base.OnValidate();
+            if (substanceRigidbody == null) substanceRigidbody = GetComponent<Rigidbody2D>();
             if (amount < 1) amount = 1;
         }
     }

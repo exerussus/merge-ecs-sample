@@ -1,5 +1,6 @@
 ﻿
 using Source.EasyECS.Interfaces;
+using Source.Scripts.ECS.Views;
 using Source.Scripts.ECS.Views.Substances;
 using Source.Scripts.SignalSystem;
 using Source.SignalSystem;
@@ -42,6 +43,8 @@ namespace Source.Scripts.ECS.Systems
                 Componenter.Del<T2>(containerEntity);
                 ref var newSubstance = ref Componenter.AddOrGet<T3>(containerEntity);
                 newSubstance.SubstanceAmount = 1;
+                ref var containerData = ref Componenter.Get<ContainerData>(containerEntity);
+                containerData.SubstanceType = newSubstance.SubstanceType;
                 return true;
             }
 

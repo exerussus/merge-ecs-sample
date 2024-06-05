@@ -4,9 +4,9 @@ using Source.SignalSystem;
 
 namespace Source.Scripts.ECS.Views.Substances
 {
-    public struct SubstanceMark : IEcsMark
+    public struct SubstanceData : IEcsMark
     {
-        
+        public Substance.Type Type;
     }
 
     public struct OnSubstanceDestroyedSignal : ISignal
@@ -23,6 +23,7 @@ namespace Source.Scripts.ECS.Views.Substances
             Amount = value;
         }
 
+        public Substance.Type SubstanceType => Substance.Type.Hypericum;
         public int SubstanceAmount { get => Amount; set => Amount = value; }
     }
     
@@ -35,6 +36,7 @@ namespace Source.Scripts.ECS.Views.Substances
             Amount = value;
         }
 
+        public Substance.Type SubstanceType => Substance.Type.FishOil;
         public int SubstanceAmount { get => Amount; set => Amount = value; }
     }
     
@@ -47,6 +49,7 @@ namespace Source.Scripts.ECS.Views.Substances
             Amount = value;
         }
 
+        public Substance.Type SubstanceType => Substance.Type.Calendula;
         public int SubstanceAmount { get => Amount; set => Amount = value; }
     }
     
@@ -59,6 +62,7 @@ namespace Source.Scripts.ECS.Views.Substances
             Amount = value;
         }
 
+        public Substance.Type SubstanceType => Substance.Type.Aqua;
         public int SubstanceAmount { get => Amount; set => Amount = value; }
     }
 }

@@ -12,21 +12,24 @@ namespace Source.Scripts.ECS.Views
     public class Container : EcsComponent
     {
         [SerializeField, ReadOnly] private int _entity;
+        [SerializeField, ReadOnly] private Substance.Type substanceType;
         private Componenter _componenter;
         public int Entity => _entity;
-        
+        public Substance.Type SubstanceType => substanceType;
+
         public override void Initialize(int entity, Componenter componenter)
         {
             _entity = entity;
             _componenter = componenter;
-            componenter.Add<ContainerMark>(_entity);
+            ref var data = ref componenter.Add<ContainerData>(_entity);
+            data.InitializeValues(substanceType);
         }
 
         private void OnCollisionEnter2D(Collision2D other)
         {
             if (other.collider.TryGetComponent(out EcsMonoBehavior substance))
             {
-                if (!_componenter.Has<SubstanceMark>(substance.Entity)) return;
+                if (!_componenter.Has<SubstanceData>(substance.Entity)) return;
                 if (_componenter.Has<OnDestroyData>(substance.Entity)) return;
                 
                 Signal.RegistryRaise(new CommandContainerAddingSignal {ContainerEntity = Entity, SubstanceEntity = substance.Entity});
@@ -34,8 +37,13 @@ namespace Source.Scripts.ECS.Views
         }
     }
 
-    public struct ContainerMark : IEcsMark
+    public struct ContainerData : IEcsData<Substance.Type>
     {
+        public Substance.Type SubstanceType;
         
+        public void InitializeValues(Substance.Type value)
+        {
+            SubstanceType = value;
+        }
     }
 }

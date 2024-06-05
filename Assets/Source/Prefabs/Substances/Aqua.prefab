@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 4148463078181010883}
   - component: {fileID: 2087723968742720129}
   - component: {fileID: 4803855650013112240}
+  - component: {fileID: -6297893658566523892}
   m_Layer: 0
   m_Name: Aqua
   m_TagString: Untagged
@@ -32,7 +33,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.68, y: 2.9, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -182,13 +183,10 @@ MonoBehaviour:
   entity: 0
   isAlive: 1
   isInitialized: 0
-  components: 1
-  onInitialized:
-    m_PersistentCalls:
-      m_Calls: []
-  onDestroy:
-    m_PersistentCalls:
-      m_Calls: []
+  components: 2
+  ecsComponents:
+  - {fileID: 4803855650013112240}
+  - {fileID: -6297893658566523892}
   signal: {fileID: 11400000, guid: 23c68ecbebf301045ad3baf06575bfca, type: 2}
 --- !u!114 &4803855650013112240
 MonoBehaviour:
@@ -206,3 +204,19 @@ MonoBehaviour:
   gameConfiguration: {fileID: 11400000, guid: de26ecfe253825248bf9f3c5ca9307e3, type: 2}
   substanceType: 0
   amount: 1
+  substanceRigidbody: {fileID: 7240186241992493711}
+--- !u!114 &-6297893658566523892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3984644096195181341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bd426ccbfe64425b2c266b3c9a3db2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  signal: {fileID: 11400000, guid: 23c68ecbebf301045ad3baf06575bfca, type: 2}
+  gameConfiguration: {fileID: 11400000, guid: de26ecfe253825248bf9f3c5ca9307e3, type: 2}
+  spriteRenderer: {fileID: 6602473028458492038}
